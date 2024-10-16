@@ -13,4 +13,6 @@ abstract class AppRoutes {
 
   static const Entry = "/entry";
   static const Mine = "/mine";
+  static const MineSetup = "/mine/setup";
+  static const MineChange = "/mine/setup/chage";
 }

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:kqcnotebook/constants/assets.dart';
 import 'package:kqcnotebook/pages/app_my_section/mine/mine_model.dart';
+import 'package:kqcnotebook/router/app_pages.dart';
 
 class MineController extends GetxController {
   final List<MineCommonServeModel> mineCommonServeList = [
@@ -18,8 +19,8 @@ class MineController extends GetxController {
     MineCommonServeModel("感谢信/锦旗", Assets.assetsImagesMyListLetter, false),
     MineCommonServeModel("互联网备案", Assets.assetsImagesMyListVerify, false),
     // MineCommonServeModel("地址管理", Assets.assetsImagesMyListVerify, false),
-    MineCommonServeModel("版本号", Assets.assetsImagesMyListVerify, false),
     MineCommonServeModel("内存", Assets.assetsImagesMyListVerify, false),
+    MineCommonServeModel("版本号", Assets.assetsImagesMyListVerify, false),
   ];
 
   @override
@@ -31,7 +32,9 @@ class MineController extends GetxController {
   void onReady() {}
 
   ///
-  void entrySetupPage() {}
+  void entrySetupPage() {
+    Get.toNamed(AppRoutes.MineSetup);
+  }
 
   ///
   void entryCommonServe(int index) {

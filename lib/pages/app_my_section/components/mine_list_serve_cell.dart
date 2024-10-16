@@ -9,9 +9,11 @@ class MineListServeCell extends StatelessWidget {
     Key? key,
     required this.model,
     required this.callback,
+    this.assitView,
   });
   final MineCommonServeModel model;
   final VoidCallback callback;
+  final Widget? assitView;
   @override
   Widget build(BuildContext context) {
     Widget wid = Container(
@@ -38,6 +40,7 @@ class MineListServeCell extends StatelessWidget {
               ),
             ),
           ),
+          assitView ?? SizedBox.shrink(),
           Image.asset(
             Assets.assetsImagesRightGreyArrow,
             width: 20,

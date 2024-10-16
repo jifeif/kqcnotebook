@@ -52,6 +52,9 @@ dependencies:
   # webview
   webview_flutter: ^2.0.8
 
+  # 版本信息
+  package_info_plus: ^8.0.3
+
   # 拍照/图片 相关
   image_picker: ^0.7.5+3
   permission_handler: ^8.0.0+2

@@ -1,6 +1,10 @@
 import 'package:kqcnotebook/pages/Index/Index_view.dart';
+import 'package:kqcnotebook/pages/app_my_section/change_nick_info/change_nick_info_binding.dart';
+import 'package:kqcnotebook/pages/app_my_section/change_nick_info/change_nick_info_view.dart';
 import 'package:kqcnotebook/pages/app_my_section/mine/mine_binding.dart';
 import 'package:kqcnotebook/pages/app_my_section/mine/mine_view.dart';
+import 'package:kqcnotebook/pages/app_my_section/mine_setup/mine_setup_binding.dart';
+import 'package:kqcnotebook/pages/app_my_section/mine_setup/mine_setup_view.dart';
 import 'package:kqcnotebook/pages/home/home.binding.dart';
 import 'package:kqcnotebook/pages/home/home_view.dart';
 import 'package:kqcnotebook/pages/login/login_binding.dart';
@@ -39,6 +43,16 @@ class AppPages {
       name: AppRoutes.Mine,
       page: () => MinePage(),
       binding: MineBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.MineSetup,
+      page: () => MineSetupPage(),
+      binding: MineSetupBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.MineChange,
+      page: () => ChangeNickInfoPage(),
+      binding: ChangeNickInfoBinding(),
     ),
   ];
 

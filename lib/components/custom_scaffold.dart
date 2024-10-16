@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kqcnotebook/common/colors/colors.dart';
 import 'custom_appbar.dart';
 
 // typedef WillPopCallback = Future<bool> Function();
@@ -25,7 +26,7 @@ class BaseScaffold extends Scaffold {
                 onWillPop: onWillPop,
                 actions: actions ?? [],
                 centerTitle: centerTitle,
-                title: MyTitle(title ?? '', color: titleColor ?? Colors.grey[800]),
+                title: MyTitle(title ?? '', color: titleColor ?? AppColors.primaryTextColor),
                 backgroundColor: appBarBackgroundColor,
               ),
           backgroundColor: Colors.white,

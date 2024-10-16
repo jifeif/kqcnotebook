@@ -21,3 +21,10 @@ extension ExtensionWidget on Widget {
     );
   }
 }
+
+
+extension ExtensionDateTime on DateTime {
+  String yearMonthDay({String joinSymbol = "-"}) {
+    return this.year.toString() + "-" + this.month.toString() +  "-" + this.day.toString();
+  }
+}

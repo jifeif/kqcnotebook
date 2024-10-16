@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:kqcnotebook/common/colors/colors.dart';
 import 'package:kqcnotebook/components/components.dart';
 import 'package:kqcnotebook/constants/assets.dart';
 import 'package:kqcnotebook/pages/app_my_section/components/mine_list_serve_cell.dart';
 import 'package:kqcnotebook/pages/app_my_section/components/mine_upImage_downText_cell.dart';
+import 'package:kqcnotebook/utils/sp_util.dart';
 import 'mine_controller.dart';
 
 final double MinePageTopHeight = 256 + Get.mediaQuery.viewPadding.top;
@@ -25,12 +24,6 @@ class MinePage extends StatelessWidget {
           children: [
             topWidget(),
             Flexible(child: bottomWidget()),
-            // Expanded(
-            //   child: Container(
-            //     color: AppColors.primaryBackground,
-            //   ),
-            // ),
-            // Expanded(child: bottomWidget()),
           ],
         ),
       ),
@@ -236,11 +229,24 @@ class MinePage extends StatelessWidget {
                 return MineListServeCell(
                   model: controller.mineCommonToolList[index],
                   callback: () => controller.entryCommonTool(index),
+                  assitView: index == controller.mineCommonToolList.length - 1
+                      ? versionInfoWidget()
+                      : null,
                 );
               },
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget versionInfoWidget() {
+    return Text(
+      "当前版本：${SPUtil.packageInfo.version}",
+      style: TextStyle(
+        fontSize: 14,
+        color: AppColors.promptTextColor,
       ),
     );
   }
