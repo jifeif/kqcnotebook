@@ -1,7 +1,13 @@
+import 'dart:ui';
+
+import 'package:event_bus/event_bus.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kqcnotebook/components/components.dart';
 import 'package:kqcnotebook/constants/assets.dart';
 import 'package:kqcnotebook/pages/app_my_section/mine/mine_model.dart';
 import 'package:kqcnotebook/router/app_pages.dart';
+import 'package:kqcnotebook/utils/utils.dart';
 
 class MineController extends GetxController {
   final List<MineCommonServeModel> mineCommonServeList = [
@@ -23,9 +29,39 @@ class MineController extends GetxController {
     MineCommonServeModel("版本号", Assets.assetsImagesMyListVerify, false),
   ];
 
+  final infoModel = AccountInfoModel("张无忌", "1991-08-06", false).obs;
+  
+  final image = Image.asset(
+    Assets.assetsImagesMyPortrait,
+    width: 60,
+    height: 60,
+  ).obs;
+
   @override
   void onInit() {
     super.onInit();
+    acquireImage();
+
+
+
+    KqcEventbus.on<AccountInfoModel>().listen(
+     (AccountInfoModel model) async {
+        infoModel.value.name = model.name;
+        infoModel.refresh();
+        Future.delayed(Duration(seconds: 4),(){
+           acquireImage();
+        });
+     } 
+    );
+  }
+
+  Future<Image?> acquireImage() async {
+    var ima = await LoacalStorage().getImage(width: 60, height: 60);
+    if (ima != null) {
+      image.value = ima;
+      image.refresh();
+    }
+    return ima;
   }
 
   @override
@@ -48,5 +84,7 @@ class MineController extends GetxController {
 
 
   @override
-  void onClose() {}
+  void onClose() {
+    EventBus().destroy();
+  }
 }

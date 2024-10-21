@@ -37,6 +37,9 @@ dependencies:
   # loaing
   flutter_easyloading: ^3.0.0
 
+  # 通知
+  event_bus: ^2.0.1
+
   # http
   dio: ^4.0.0
   cookie_jar: ^3.0.1
@@ -44,6 +47,7 @@ dependencies:
 
   # storage + cache
   shared_preferences: ^2.0.6
+  path_provider: ^2.1.4
   cached_network_image: ^3.0.0
 
   # 上拉刷新/下拉加载

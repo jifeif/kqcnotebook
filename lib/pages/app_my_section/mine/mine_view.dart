@@ -6,6 +6,7 @@ import 'package:kqcnotebook/constants/assets.dart';
 import 'package:kqcnotebook/pages/app_my_section/components/mine_list_serve_cell.dart';
 import 'package:kqcnotebook/pages/app_my_section/components/mine_upImage_downText_cell.dart';
 import 'package:kqcnotebook/utils/sp_util.dart';
+import 'package:kqcnotebook/utils/utils.dart';
 import 'mine_controller.dart';
 
 final double MinePageTopHeight = 256 + Get.mediaQuery.viewPadding.top;
@@ -19,12 +20,14 @@ class MinePage extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: AppColors.primaryBackground,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            topWidget(),
-            Flexible(child: bottomWidget()),
-          ],
+        child: Obx(
+          () => Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              topWidget(),
+              Flexible(child: bottomWidget()),
+            ],
+          ),
         ),
       ),
     );
@@ -94,11 +97,14 @@ class MinePage extends StatelessWidget {
             borderRadius: BorderRadius.circular(32),
             border: Border.all(width: 2.0, color: AppColors.whiteColor),
           ),
-          child: Image.asset(
-            Assets.assetsImagesMyPortrait,
-            width: 62,
-            height: 62,
-          ),
+          alignment: Alignment.center,
+          child: Container(
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: controller.image.value,
+              ),
         ),
         Expanded(
           child: Column(
@@ -108,7 +114,7 @@ class MinePage extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "张那",
+                    controller.infoModel.value.name,
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.w600,

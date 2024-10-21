@@ -27,11 +27,11 @@ class ChangeNickInfoPage extends GetView<ChangeNickInfoController> {
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          Obx(()=>mainWidget()),
+          Obx(() => mainWidget()),
           sureWidget(),
         ],
       ),
-    );
+    ).addGesture(()=>controller.nickNode.unfocus());
   }
 
   Widget mainWidget() {
@@ -61,11 +61,7 @@ class ChangeNickInfoPage extends GetView<ChangeNickInfoController> {
         ),
       ),
       assistView: ClipOval(
-        child: Image.asset(
-          Assets.assetsImagesMyPortrait,
-          width: 40,
-          height: 40,
-        ),
+        child: controller.image.value,
       ),
       rightWidget: Image.asset(
         Assets.assetsImagesRightGreyArrow,
@@ -73,6 +69,7 @@ class ChangeNickInfoPage extends GetView<ChangeNickInfoController> {
         height: 12,
       ),
       padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+      callback: ()=>controller.selectImage(),
     );
   }
 
@@ -115,19 +112,13 @@ class ChangeNickInfoPage extends GetView<ChangeNickInfoController> {
           color: AppColors.primaryTextColor,
         ),
       ),
-      assistView: Text(
-        "张三",
-        style: TextStyle(
-          fontSize: 14,
-          color: AppColors.assistTextColor,
-        ),
-      ),
+      assistView: nickTextfieldWidget(),
       rightWidget: Image.asset(
         Assets.assetsImagesRightGreyArrow,
         width: 12,
         height: 12,
       ),
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+      padding: EdgeInsets.symmetric(horizontal: 12),
     );
   }
 
@@ -148,7 +139,39 @@ class ChangeNickInfoPage extends GetView<ChangeNickInfoController> {
           color: AppColors.primaryTextColor,
         ),
       ),
-    ).addGesture(() {});
+    ).addGesture(() => controller.clickSureBtn());
+  }
+
+  Widget nickTextfieldWidget() {
+    return Flexible(
+      child: Container(
+        child: TextField(
+          maxLength: 10,
+          textAlign: TextAlign.right,
+          focusNode: controller.nickNode,
+          style: TextStyle(
+            fontSize: 14,
+            color: AppColors.primaryTextColor,
+          ),
+          onChanged: (str) {
+            controller.nickName = str;
+            if (str.length >= 10) {
+              controller.nickNode.unfocus();
+            }
+          },
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 16),
+            hintText: "请设置昵称",
+            hintStyle: TextStyle(
+              fontSize: 14,
+              color: AppColors.assistTextColor,
+            ),
+            counterText: "",
+            border: InputBorder.none,
+          ),
+        ),
+      ),
+    );
   }
 
   //MARK: 日期选择
