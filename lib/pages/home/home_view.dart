@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kqcnotebook/components/components.dart';
+import 'package:kqcnotebook/common/colors/colors.dart';
+import 'package:kqcnotebook/constants/assets.dart';
+import 'package:kqcnotebook/pages/home/components/home_record_cell.dart';
+import 'package:kqcnotebook/pages/home/components/home_top_widget.dart';
 import 'package:kqcnotebook/pages/home/home_controller.dart';
 import 'package:get/get.dart';
 
@@ -8,22 +11,27 @@ class HomePage extends StatelessWidget {
   final controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
-    return BaseScaffold(
-      appBar: MyAppBar(
-        centerTitle: true,
-        title: MyTitle('首页'),
-        leadingType: AppBarBackType.None,
-      ),
+    return Scaffold(
+      appBar: null,
       body: Container(
+        color: AppColors.primaryBackground,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Obx(() => Center(child: Text(controller.count.toString()))),
-            TextButton(onPressed: () => controller.increment(), child: Text('count++')),
-            GetBuilder<HomeController>(builder: (_) {
-              return Text(controller.userName);
-            }),
-            TextButton(onPressed: () => controller.changeUserName(), child: Text('changeName')),
+            HomeTopWidget(),
+            Expanded(
+              child: controller.isExistData.value
+                  ? SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          HomeRecordCell(),
+                        ],
+                      ),
+                    )
+                  : Expanded(
+                      child: Center(
+                      child: Image.asset(Assets.assetsImagesRecordEmpty, width: 150, height: 174,),
+                    )),
+            ),
           ],
         ),
       ),

@@ -2,6 +2,14 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsImagesCellBg
+  /// assets/images/cell_bg.png
+  static const String assetsImagesCellBg = "assets/images/cell_bg.png";
+
+  /// Assets for assetsImagesHomeBg
+  /// assets/images/home_bg.jpeg
+  static const String assetsImagesHomeBg = "assets/images/home_bg.jpeg";
+
   /// Assets for assetsImagesHomeSection
   /// assets/images/home_section.png
   static const String assetsImagesHomeSection = "assets/images/home_section.png";
@@ -57,6 +65,10 @@ class Assets {
   /// Assets for assetsImagesMyTopBgIcon
   /// assets/images/my_top_bg_icon.png
   static const String assetsImagesMyTopBgIcon = "assets/images/my_top_bg_icon.png";
+
+  /// Assets for assetsImagesRecordEmpty
+  /// assets/images/record_empty.png
+  static const String assetsImagesRecordEmpty = "assets/images/record_empty.png";
 
   /// Assets for assetsImagesRightGreyArrow
   /// assets/images/right_grey_arrow.png

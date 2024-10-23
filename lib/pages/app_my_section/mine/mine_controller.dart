@@ -1,7 +1,7 @@
-import 'dart:ui';
 
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:kqcnotebook/components/components.dart';
 import 'package:kqcnotebook/constants/assets.dart';
@@ -40,6 +40,10 @@ class MineController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    String str = LoacalStorage().getJSON("nick") ?? "";
+    if (str.length > 0) {
+      infoModel.value.name = str;
+    }
     acquireImage();
 
 
@@ -48,9 +52,11 @@ class MineController extends GetxController {
      (AccountInfoModel model) async {
         infoModel.value.name = model.name;
         infoModel.refresh();
-        Future.delayed(Duration(seconds: 4),(){
-           acquireImage();
-        });
+        image.value = Image(image: model.image!.image, width: 60, height: 60,);
+        ;
+        // // Future.delayed(Duration(seconds: 4),(){
+        // //    acquireImage();
+        // });
      } 
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kqcnotebook/common/colors/colors.dart';
 
 extension BordeText on Text {
   Widget addBorder(EdgeInsetsGeometry? padding, double? radius, Color? borderColor, double? borderWidth,) {
@@ -27,4 +28,12 @@ extension ExtensionDateTime on DateTime {
   String yearMonthDay({String joinSymbol = "-"}) {
     return this.year.toString() + "-" + this.month.toString() +  "-" + this.day.toString();
   }
+}
+
+Widget AcquireDivider({Color? color, EdgeInsetsGeometry? margin, double? height}) {
+  return Container(
+    color: color ?? AppColors.divideLineColor,
+    margin: margin,
+    height: height,
+  );
 }

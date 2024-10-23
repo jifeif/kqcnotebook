@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kqcnotebook/common/values/values.dart';
 import 'package:kqcnotebook/pages/login/login_model.dart';
-import 'package:kqcnotebook/utils/sp_util.dart';
 import 'package:kqcnotebook/utils/utils.dart';
 
 /// 全局配置

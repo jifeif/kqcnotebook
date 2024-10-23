@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:kqcnotebook/common/colors/colors.dart';
 import 'package:kqcnotebook/components/components.dart';
@@ -146,6 +145,7 @@ class ChangeNickInfoPage extends GetView<ChangeNickInfoController> {
     return Flexible(
       child: Container(
         child: TextField(
+          controller: controller.contro,
           maxLength: 10,
           textAlign: TextAlign.right,
           focusNode: controller.nickNode,

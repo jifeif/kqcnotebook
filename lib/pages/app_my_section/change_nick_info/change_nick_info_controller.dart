@@ -1,17 +1,15 @@
 import 'dart:io';
 
-import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kqcnotebook/components/border_text.dart';
 import 'package:kqcnotebook/components/components.dart';
-import 'package:kqcnotebook/components/select_image_video.dart';
 import 'package:kqcnotebook/constants/assets.dart';
 import 'package:kqcnotebook/utils/utils.dart';
 
 class ChangeNickInfoController extends GetxController {
   final currentDate = DateTime.now().obs;
   final nickNode = FocusNode();
+  late TextEditingController contro;
   var nickName = "";
   final image = Image.asset(
     Assets.assetsImagesMyPortrait,
@@ -23,6 +21,7 @@ class ChangeNickInfoController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    contro = TextEditingController(text: LoacalStorage().getJSON("nick") ?? "");
     Image? ima = await LoacalStorage().getImage();
     if (ima != null) {
       image.value = ima;
@@ -46,8 +45,10 @@ class ChangeNickInfoController extends GetxController {
   }
 
   clickSureBtn() {
-    KqcEventbus.fire(
-        AccountInfoModel(nickName, currentDate.value.yearMonthDay(), false));
+    LoacalStorage().setJSON("nick", nickName);
+    AccountInfoModel model = AccountInfoModel(nickName, currentDate.value.yearMonthDay(), false);
+    model.image = image.value;
+    KqcEventbus.fire(model);
     Get.back();
   }
 
