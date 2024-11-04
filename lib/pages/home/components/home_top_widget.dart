@@ -7,9 +7,15 @@ import 'package:kqcnotebook/pages/app_my_section/components/mine_up_down_cell.da
 
 // ignore: must_be_immutable
 class HomeTopWidget extends StatelessWidget {
-  HomeTopWidget({Key? key, this.month = "十月", this.money = "1800.00"});
+  HomeTopWidget({
+    Key? key,
+    this.month = "十月",
+    this.money = "1800.00",
+    this.recordBack,
+  });
   String month;
   String money;
+  VoidCallback? recordBack;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -81,7 +87,9 @@ class HomeTopWidget extends StatelessWidget {
                 horizontal: 16,
                 vertical: 12,
               ),
-              callback: () {})
+              callback: () {
+                recordBack?.call();
+              })
         ],
       ),
     );

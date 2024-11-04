@@ -2,9 +2,25 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsFileStartCategory
+  /// assets/file/start_category.json
+  static const String assetsFileStartCategory = "assets/file/start_category.json";
+
   /// Assets for assetsImagesCellBg
   /// assets/images/cell_bg.png
   static const String assetsImagesCellBg = "assets/images/cell_bg.png";
+
+  /// Assets for assetsImagesChi
+  /// assets/images/chi.png
+  static const String assetsImagesChi = "assets/images/chi.png";
+
+  /// Assets for assetsImagesFrame 4124
+  /// assets/images/Frame 4124.png
+  static const String assetsImagesFrame4124 = "assets/images/Frame 4124.png";
+
+  /// Assets for assetsImagesGouwu
+  /// assets/images/gouwu.png
+  static const String assetsImagesGouwu = "assets/images/gouwu.png";
 
   /// Assets for assetsImagesHomeBg
   /// assets/images/home_bg.jpeg
@@ -17,6 +33,10 @@ class Assets {
   /// Assets for assetsImagesHomeSectionSelect
   /// assets/images/home_section_select.png
   static const String assetsImagesHomeSectionSelect = "assets/images/home_section_select.png";
+
+  /// Assets for assetsImagesJiaotong
+  /// assets/images/jiaotong.png
+  static const String assetsImagesJiaotong = "assets/images/jiaotong.png";
 
   /// Assets for assetsImagesMessageSection
   /// assets/images/message_section.png
@@ -66,6 +86,10 @@ class Assets {
   /// assets/images/my_top_bg_icon.png
   static const String assetsImagesMyTopBgIcon = "assets/images/my_top_bg_icon.png";
 
+  /// Assets for assetsImagesOther
+  /// assets/images/other.png
+  static const String assetsImagesOther = "assets/images/other.png";
+
   /// Assets for assetsImagesRecordEmpty
   /// assets/images/record_empty.png
   static const String assetsImagesRecordEmpty = "assets/images/record_empty.png";
@@ -73,5 +97,17 @@ class Assets {
   /// Assets for assetsImagesRightGreyArrow
   /// assets/images/right_grey_arrow.png
   static const String assetsImagesRightGreyArrow = "assets/images/right_grey_arrow.png";
+
+  /// Assets for assetsImagesShejiao
+  /// assets/images/shejiao.png
+  static const String assetsImagesShejiao = "assets/images/shejiao.png";
+
+  /// Assets for assetsImagesYule
+  /// assets/images/yule.png
+  static const String assetsImagesYule = "assets/images/yule.png";
+
+  /// Assets for assetsImagesZhu
+  /// assets/images/zhu.png
+  static const String assetsImagesZhu = "assets/images/zhu.png";
 }
 

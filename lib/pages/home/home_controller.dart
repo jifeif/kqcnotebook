@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:kqcnotebook/router/app_pages.dart';
 
 class HomeController extends GetxController {
 
@@ -11,6 +12,10 @@ class HomeController extends GetxController {
 
   @override
   void onReady() {}
+
+  entrySingleReocrdPage() {
+    Get.toNamed(AppRoutes.SingleRecord);
+  }
 
   @override
   void onClose() {}

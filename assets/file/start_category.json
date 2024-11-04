@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1",
+        "name": "购物",
+        "icon": "assets/images/gouwu.png",
+        "sub": []
+    },
+    {
+        "id": "2",
+        "name": "餐饮",
+        "icon": "assets/images/chi.png",
+        "sub": []
+    },
+    {
+        "id": "3",
+        "name": "住房",
+        "icon": "assets/images/zhu.png",
+        "sub": []
+    },
+    {
+        "id": "4",
+        "name": "交通",
+        "icon": "assets/images/jiaotong.png",
+        "sub": []
+    },
+    {
+        "id": "5",
+        "name": "社交",
+        "icon": "assets/images/shejiao.png",
+        "sub": []
+    },
+    {
+        "id": "6",
+        "name": "娱乐",
+        "icon": "assets/images/yule.png",
+        "sub": []
+    },
+    {
+        "id": "7",
+        "name": "亏损",
+        "icon": "assets/images/kuisun.png",
+        "sub": []
+    },
+    {
+        "id": "8",
+        "name": "其它",
+        "icon": "assets/images/other.png",
+        "sub": []
+    }
+]

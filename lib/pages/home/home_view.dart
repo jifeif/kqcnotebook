@@ -17,7 +17,9 @@ class HomePage extends StatelessWidget {
         color: AppColors.primaryBackground,
         child: Column(
           children: [
-            HomeTopWidget(),
+            HomeTopWidget(
+              recordBack: () => controller.entrySingleReocrdPage(),
+            ),
             Expanded(
               child: controller.isExistData.value
                   ? SingleChildScrollView(
@@ -29,7 +31,11 @@ class HomePage extends StatelessWidget {
                     )
                   : Expanded(
                       child: Center(
-                      child: Image.asset(Assets.assetsImagesRecordEmpty, width: 150, height: 174,),
+                      child: Image.asset(
+                        Assets.assetsImagesRecordEmpty,
+                        width: 150,
+                        height: 174,
+                      ),
                     )),
             ),
           ],

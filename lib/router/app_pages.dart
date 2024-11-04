@@ -13,6 +13,8 @@ import 'package:kqcnotebook/pages/note_entry/note_entry_binding.dart';
 import 'package:kqcnotebook/pages/notfound/notfound_view.dart';
 import 'package:kqcnotebook/pages/proxy/proxy_view.dart';
 import 'package:get/get.dart';
+import 'package:kqcnotebook/pages/single_record/single_record_binding.dart';
+import 'package:kqcnotebook/pages/single_record/single_record_view.dart';
 import '../pages/note_entry/note_entry_view.dart';
 part 'app_routes.dart';
 
@@ -53,6 +55,11 @@ class AppPages {
       name: AppRoutes.MineChange,
       page: () => ChangeNickInfoPage(),
       binding: ChangeNickInfoBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.SingleRecord,
+      page: () => SingleRecordPage(),
+      binding: SingleRecordBinding(),
     ),
   ];
 
