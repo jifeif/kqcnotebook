@@ -1,4 +1,3 @@
-
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -25,12 +24,12 @@ class MineController extends GetxController {
     MineCommonServeModel("感谢信/锦旗", Assets.assetsImagesMyListLetter, false),
     MineCommonServeModel("互联网备案", Assets.assetsImagesMyListVerify, false),
     // MineCommonServeModel("地址管理", Assets.assetsImagesMyListVerify, false),
-    MineCommonServeModel("内存", Assets.assetsImagesMyListVerify, false),
+    MineCommonServeModel("清除内存", Assets.assetsImagesMyListVerify, false),
     MineCommonServeModel("版本号", Assets.assetsImagesMyListVerify, false),
   ];
 
   final infoModel = AccountInfoModel("张无忌", "1991-08-06", false).obs;
-  
+
   final image = Image.asset(
     Assets.assetsImagesMyPortrait,
     width: 60,
@@ -46,19 +45,19 @@ class MineController extends GetxController {
     }
     acquireImage();
 
-
-
-    KqcEventbus.on<AccountInfoModel>().listen(
-     (AccountInfoModel model) async {
-        infoModel.value.name = model.name;
-        infoModel.refresh();
-        image.value = Image(image: model.image!.image, width: 60, height: 60,);
-        ;
-        // // Future.delayed(Duration(seconds: 4),(){
-        // //    acquireImage();
-        // });
-     } 
-    );
+    KqcEventbus.on<AccountInfoModel>().listen((AccountInfoModel model) async {
+      infoModel.value.name = model.name;
+      infoModel.refresh();
+      image.value = Image(
+        image: model.image!.image,
+        width: 60,
+        height: 60,
+      );
+      ;
+      // // Future.delayed(Duration(seconds: 4),(){
+      // //    acquireImage();
+      // });
+    });
   }
 
   Future<Image?> acquireImage() async {
@@ -86,8 +85,10 @@ class MineController extends GetxController {
   ///
   void entryCommonTool(int index) {
     print(index);
+    if (index == 4) {
+      LoacalStorage().clearCoastRecordList();
+    }
   }
-
 
   @override
   void onClose() {

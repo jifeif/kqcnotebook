@@ -32,6 +32,9 @@ class AppColors {
   static final Color primaryTextColor = textColor.withOpacity(0.9);
 
   /// 主文本灰色
+  static final Color primarySecondTextColor = textColor.withOpacity(0.8);
+
+  /// 主文本灰色
   static final Color assistTextColor = textColor.withOpacity(0.6);
 
   /// 主文本灰色

@@ -13,33 +13,42 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
-      body: Container(
-        color: AppColors.primaryBackground,
-        child: Column(
-          children: [
-            HomeTopWidget(
-              recordBack: () => controller.entrySingleReocrdPage(),
+      body: Obx(
+        () {
+          return Container(
+            color: AppColors.primaryBackground,
+            child: Column(
+              children: [
+                HomeTopWidget(
+                  recordBack: () => controller.entrySingleReocrdPage(),
+                  month: controller.showMonth.value,
+                ),
+                Expanded(
+                  child: controller.isExistData.value
+                      ? SingleChildScrollView(
+                          child: Column(
+                            children: controller.keyList.length > 0
+                                ? controller.keyList
+                                    .map((e) => HomeRecordCell(recordList: controller.recordMap[e]))
+                                    .toList()
+                                : [
+                                    HomeRecordCell(),
+                                  ],
+                          ),
+                        )
+                      : Expanded(
+                          child: Center(
+                          child: Image.asset(
+                            Assets.assetsImagesRecordEmpty,
+                            width: 150,
+                            height: 174,
+                          ),
+                        )),
+                ),
+              ],
             ),
-            Expanded(
-              child: controller.isExistData.value
-                  ? SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          HomeRecordCell(),
-                        ],
-                      ),
-                    )
-                  : Expanded(
-                      child: Center(
-                      child: Image.asset(
-                        Assets.assetsImagesRecordEmpty,
-                        width: 150,
-                        height: 174,
-                      ),
-                    )),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

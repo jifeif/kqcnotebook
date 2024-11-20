@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kqcnotebook/common/colors/colors.dart';
 
 extension BordeText on Text {
@@ -55,6 +56,15 @@ extension ExtensionDateTime on DateTime {
   }
 }
 
+extension ExtensionDigitFormat on String {
+  String toFixedDigit(int fractionDigits) {
+    if (this.isEmpty) {
+      return "0.00";
+    }
+    return double.parse(this).toStringAsFixed(fractionDigits).toString();
+  }
+}
+
 Widget AcquireDivider(
     {Color? color, EdgeInsetsGeometry? margin, double? height}) {
   return Container(
@@ -63,3 +73,5 @@ Widget AcquireDivider(
     height: height,
   );
 }
+
+

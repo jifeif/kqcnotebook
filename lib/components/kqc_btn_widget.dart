@@ -6,6 +6,7 @@ import 'package:kqcnotebook/components/border_text.dart';
 class KqcBtnWidget extends StatelessWidget {
   KqcBtnWidget({
     Key? key,
+    this.width,
     this.height = 44,
     this.color = AppColors.primaryColor,
     this.radius = 8,
@@ -18,6 +19,7 @@ class KqcBtnWidget extends StatelessWidget {
     this.margin,
   });
   double? height;
+  double? width;
   Color? color;
   double radius;
   String title;
@@ -33,6 +35,7 @@ class KqcBtnWidget extends StatelessWidget {
       margin: margin,
       padding: padding,
       height: height,
+      width: width,
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(radius),

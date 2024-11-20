@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kqcnotebook/common/colors/colors.dart';
 import 'package:kqcnotebook/components/border_text.dart';
-import 'package:kqcnotebook/constants/assets.dart';
-import 'package:kqcnotebook/pages/app_my_section/components/mine_up_down_cell.dart';
+import 'package:kqcnotebook/pages/home/home_model.dart';
 
+// ignore: must_be_immutable
 class HomeRecordCell extends StatelessWidget {
-  const HomeRecordCell({Key? key});
+  List<SingleCoastRecord>? recordList;
+  HomeRecordCell({Key? key, this.recordList});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class HomeRecordCell extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(vertical: 6),
             child: Text(
-              "2024-10-23",
+              recordList == null ? "2024-10-23" : recordList!.first.date,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -33,7 +34,7 @@ class HomeRecordCell extends StatelessWidget {
               ),
             ),
           ),
-          SingleRecordWidget(),
+          ...acquireList(),
           AcquireDivider(
             margin: EdgeInsets.symmetric(horizontal: 16),
           ),
@@ -42,10 +43,28 @@ class HomeRecordCell extends StatelessWidget {
     );
     return wid;
   }
+
+
+  List<Widget> acquireList() {
+    if (recordList == null) {
+      return [SingleRecordWidget()];
+    }
+    
+    int maxCount = recordList!.length;
+    int index = 0;
+    return recordList!.map<SingleRecordWidget>((e){
+      SingleRecordWidget wid = SingleRecordWidget(record: e, isLast: index == maxCount - 1,);
+      index += 1;
+      return wid;
+    }).toList();
+  }
 }
 
+// ignore: must_be_immutable
 class SingleRecordWidget extends StatelessWidget {
-  const SingleRecordWidget({Key? key});
+  SingleCoastRecord? record;
+  bool isLast;
+  SingleRecordWidget({Key? key, this.record, this.isLast = false});
 
   @override
   Widget build(BuildContext context) {
@@ -57,26 +76,31 @@ class SingleRecordWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "类别",
+              record?.type ?? "示例",
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
                 color: AppColors.primaryTextColor,
               ),
             ),
-            // SizedBox(height: 3,),
-            // Text(
-            //   "详细介绍下",
-            //   maxLines: 2,
-            //   style: TextStyle(
-            //     fontSize: 13,
-            //     color: AppColors.assistTextColor,
-            //   ),
-            // ),
+            Visibility(
+              visible: (record?.introduce ?? "").isNotEmpty,
+              child: Container(
+                padding: EdgeInsets.only(top: 3),
+                child: Text(
+                  record?.introduce ?? "",
+                  maxLines: 2,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: AppColors.assistTextColor,
+                  ),
+                ),
+              ),
+            )
           ],
         ),
         Text(
-          "¥11.1",
+          "¥" + (record?.price ?? "").toFixedDigit(2),
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w500,
@@ -86,7 +110,7 @@ class SingleRecordWidget extends StatelessWidget {
       ],
     );
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 2),
+      padding: EdgeInsets.fromLTRB(0, 2, 0, isLast ? 2 : 8),
       child: row,
     );
   }

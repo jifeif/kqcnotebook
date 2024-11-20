@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:kqcnotebook/pages/home/home_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -70,5 +71,27 @@ class LoacalStorage {
     } else {
       return null;
     }
+  }
+
+
+  Future<List<SingleCoastRecord>> getExistCoastRecordList() async {
+    List list = await getSingleCoastRecordList();
+    return list.map<SingleCoastRecord>((e)=>SingleCoastRecord.fromJson(jsonDecode(e))).toList();
+  }
+
+  Future<List<String>> getSingleCoastRecordList() async {
+      return await _prefs.getStringList("SingleCoastRecordList") ?? [];
+  }
+
+  Future<bool> saveSingleCoastRecord(SingleCoastRecord record) async {
+    String jsonStr = jsonEncode(record.toJson()); 
+    List<String> list = await getSingleCoastRecordList();
+    list.add(jsonStr);
+    return await _prefs.setStringList("SingleCoastRecordList", list);
+  }
+
+  Future<bool> clearCoastRecordList() async {
+    bool bl = await _prefs.remove("SingleCoastRecordList");
+    return bl;
   }
 }
