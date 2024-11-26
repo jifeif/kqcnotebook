@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kqcnotebook/common/colors/colors.dart';
 import 'package:kqcnotebook/components/border_text.dart';
+import 'package:kqcnotebook/components/dashedLine.dart';
 import 'package:kqcnotebook/pages/home/home_model.dart';
 
 // ignore: must_be_immutable
@@ -12,7 +13,7 @@ class HomeRecordCell extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget wid = Container(
       width: double.infinity,
-      margin: EdgeInsets.all(10),
+      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: AppColors.whiteColor,
@@ -44,16 +45,18 @@ class HomeRecordCell extends StatelessWidget {
     return wid;
   }
 
-
   List<Widget> acquireList() {
     if (recordList == null) {
       return [SingleRecordWidget()];
     }
-    
+
     int maxCount = recordList!.length;
     int index = 0;
-    return recordList!.map<SingleRecordWidget>((e){
-      SingleRecordWidget wid = SingleRecordWidget(record: e, isLast: index == maxCount - 1,);
+    return recordList!.map<SingleRecordWidget>((e) {
+      SingleRecordWidget wid = SingleRecordWidget(
+        record: e,
+        isLast: index == maxCount - 1,
+      );
       index += 1;
       return wid;
     }).toList();
@@ -109,9 +112,17 @@ class SingleRecordWidget extends StatelessWidget {
         )
       ],
     );
-    return Container(
-      padding: EdgeInsets.fromLTRB(0, 2, 0, isLast ? 2 : 8),
-      child: row,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 5),
+          child: Dashedline(
+            color: AppColors.divideLineColor,
+          ),
+        ),
+        row,
+      ],
     );
   }
 }

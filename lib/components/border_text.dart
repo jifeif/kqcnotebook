@@ -63,6 +63,14 @@ extension ExtensionDigitFormat on String {
     }
     return double.parse(this).toStringAsFixed(fractionDigits).toString();
   }
+
+  bool isSameMonth(int mon) {
+    List list = this.split("-");
+    if (list.length > 2) {
+      return int.parse(list[1]) == mon;
+    }
+    return false;
+  }
 }
 
 Widget AcquireDivider(

@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:kqcnotebook/components/border_text.dart';
 import 'package:kqcnotebook/pages/home/home_model.dart';
 import 'package:kqcnotebook/router/app_pages.dart';
 import 'package:kqcnotebook/utils/utils.dart';
@@ -18,14 +20,17 @@ class HomeController extends GetxController {
     super.onInit();
     await acquireListData();
     showMonth.value = acquireCurrentMonth();
-    
+    await acquireCurrentMonthCoast(DateTime.now().month);
   }
 
   @override
   void onReady() {}
 
-  entrySingleReocrdPage() {
-    Get.toNamed(AppRoutes.SingleRecord);
+  entrySingleReocrdPage() async {
+    SingleCoastRecord record = await Get.toNamed(AppRoutes.SingleRecord);
+    list.add(record);
+    addOnlyRecord(record);
+    await acquireCurrentMonthCoast(DateTime.now().month);
   }
 
   String acquireCurrentMonth() {
@@ -58,8 +63,29 @@ class HomeController extends GetxController {
     }
   }
 
-  acquireCurrentMonthCoast() {
+  acquireCurrentMonthCoast(int month) {
+    double total = 0;
+    for (SingleCoastRecord record in list) {
+      if (record.date.isSameMonth(month)) {
+        total += double.parse(record.price);
+      }
+    }
+    totalCoast.value = total.toString().toFixedDigit(2);
+  }
 
+  // 添加单条记录
+  addOnlyRecord(SingleCoastRecord record) {
+    List<SingleCoastRecord> recordList = [];
+    if (keyList.contains(record.date)) {
+      recordList = recordMap[record.date]!;
+    } else {
+      keyList.add(record.date);
+      recordMap[record.date] = recordList;
+    }
+    List<String> tempList = keyList.map<String>((e)=>e).toList();
+    tempList.sort((a,b)=>b.compareTo(a));
+    keyList.value = tempList;
+    keyList.refresh();
   }
 
   acquireListData() async {
@@ -75,6 +101,9 @@ class HomeController extends GetxController {
       }
       recordList.add(rec);
     }
+    List<String> tempList = keyList.map<String>((e) => e).toList();
+    tempList.sort((a, b) => b.compareTo(a));
+    keyList.value = tempList;
     keyList.refresh();
   }
 

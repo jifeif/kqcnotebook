@@ -22,6 +22,7 @@ class HomePage extends StatelessWidget {
                 HomeTopWidget(
                   recordBack: () => controller.entrySingleReocrdPage(),
                   month: controller.showMonth.value,
+                  money: controller.totalCoast.value,
                 ),
                 Expanded(
                   child: controller.isExistData.value

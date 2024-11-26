@@ -71,7 +71,7 @@ class HomeTopWidget extends StatelessWidget {
                   ),
                 ),
                 downWidget: Text(
-                  money,
+                  "¥" + money,
                   style: TextStyle(
                     fontSize: 14,
                     color: AppColors.whiteColor,
