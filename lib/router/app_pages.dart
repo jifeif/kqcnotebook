@@ -5,6 +5,8 @@ import 'package:kqcnotebook/pages/app_my_section/mine/mine_binding.dart';
 import 'package:kqcnotebook/pages/app_my_section/mine/mine_view.dart';
 import 'package:kqcnotebook/pages/app_my_section/mine_setup/mine_setup_binding.dart';
 import 'package:kqcnotebook/pages/app_my_section/mine_setup/mine_setup_view.dart';
+import 'package:kqcnotebook/pages/app_my_section/chart_brower/chart_brower_binding.dart';
+import 'package:kqcnotebook/pages/app_my_section/chart_brower/chart_brower_view.dart';
 import 'package:kqcnotebook/pages/home/home.binding.dart';
 import 'package:kqcnotebook/pages/home/home_view.dart';
 import 'package:kqcnotebook/pages/login/login_binding.dart';
@@ -60,6 +62,11 @@ class AppPages {
       name: AppRoutes.SingleRecord,
       page: () => SingleRecordPage(),
       binding: SingleRecordBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.MineChart,
+      page: () => ChartBrowerPage(),
+      binding: ChartBrowerBinding(),
     ),
   ];
 

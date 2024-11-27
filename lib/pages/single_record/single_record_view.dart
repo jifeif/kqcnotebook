@@ -165,6 +165,8 @@ class SingleRecordPage extends GetView<SingleRecordController> {
         child: Container(
           margin: EdgeInsets.fromLTRB(
               16, Get.mediaQuery.viewPadding.top + 24 + 40, 16, 0),
+          width: Get.width - 32,
+          color:Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,

@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:kqcnotebook/components/border_text.dart';
 import 'package:kqcnotebook/pages/home/home_model.dart';
 import 'package:kqcnotebook/router/app_pages.dart';
@@ -27,7 +26,10 @@ class HomeController extends GetxController {
   void onReady() {}
 
   entrySingleReocrdPage() async {
-    SingleCoastRecord record = await Get.toNamed(AppRoutes.SingleRecord);
+    dynamic record = await Get.toNamed(AppRoutes.SingleRecord);
+    if (record == null) {
+      return;
+    }
     list.add(record);
     addOnlyRecord(record);
     await acquireCurrentMonthCoast(DateTime.now().month);

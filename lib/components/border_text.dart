@@ -37,7 +37,8 @@ extension ExtensionWidget on Widget {
     );
   }
 
-  Widget addMargin(EdgeInsetsDirectional margin, {EdgeInsetsGeometry? padding}) {
+  Widget addMargin(EdgeInsetsDirectional margin,
+      {EdgeInsetsGeometry? padding}) {
     return Container(
       margin: margin,
       padding: padding,
@@ -64,10 +65,14 @@ extension ExtensionDigitFormat on String {
     return double.parse(this).toStringAsFixed(fractionDigits).toString();
   }
 
-  bool isSameMonth(int mon) {
+  bool isSameMonth(int mon, {int? year}) {
     List list = this.split("-");
     if (list.length > 2) {
-      return int.parse(list[1]) == mon;
+      if (year != null) {
+        return int.parse(list[0]) == year && int.parse(list[1]) == mon;
+      } else {
+        return int.parse(list[1]) == mon;
+      }
     }
     return false;
   }
@@ -81,5 +86,3 @@ Widget AcquireDivider(
     height: height,
   );
 }
-
-

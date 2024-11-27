@@ -10,7 +10,7 @@ import 'package:kqcnotebook/utils/utils.dart';
 
 class MineController extends GetxController {
   final List<MineCommonServeModel> mineCommonServeList = [
-    MineCommonServeModel("我的收入", Assets.assetsImagesMyIncromIcon, true),
+    MineCommonServeModel("我的支出", Assets.assetsImagesMyIncromIcon, true),
     MineCommonServeModel("助理账号", Assets.assetsImagesMyAssistentIcon, false),
     MineCommonServeModel("操作手册", Assets.assetsImagesMyAssistentIcon, false),
     MineCommonServeModel("我的收入", Assets.assetsImagesMyAssistentIcon, false),
@@ -79,7 +79,11 @@ class MineController extends GetxController {
 
   ///
   void entryCommonServe(int index) {
-    print(index);
+    if (index == 0) {
+      Get.toNamed(AppRoutes.MineChart);
+    } else {
+      print(index);
+    }
   }
 
   ///
