@@ -51,9 +51,9 @@ extension ExtensionDateTime on DateTime {
   String yearMonthDay({String joinSymbol = "-"}) {
     return this.year.toString() +
         "-" +
-        this.month.toString() +
+        this.month.toString().padLeft(2, '0') +
         "-" +
-        this.day.toString();
+        this.day.toString().padLeft(2, '0');
   }
 }
 

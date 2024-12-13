@@ -10,6 +10,7 @@ class HomeController extends GetxController {
   List<SingleCoastRecord> list = [];
 
   final keyList = [].obs;
+  final currentInvalidDataList = [].obs;
   final recordMap = Map<String, List<SingleCoastRecord>>().obs;
   final showMonth = "".obs;
   final totalCoast = "".obs;
@@ -84,10 +85,12 @@ class HomeController extends GetxController {
       keyList.add(record.date);
       recordMap[record.date] = recordList;
     }
-    List<String> tempList = keyList.map<String>((e)=>e).toList();
-    tempList.sort((a,b)=>b.compareTo(a));
+    recordList.add(record);
+    List<String> tempList = keyList.map<String>((e) => e).toList();
+    tempList.sort((a, b) => b.compareTo(a));
     keyList.value = tempList;
-    keyList.refresh();
+    updateCurrentMonthRecord();
+    // keyList.refresh();
   }
 
   acquireListData() async {
@@ -107,6 +110,21 @@ class HomeController extends GetxController {
     tempList.sort((a, b) => b.compareTo(a));
     keyList.value = tempList;
     keyList.refresh();
+
+    updateCurrentMonthRecord();
+  }
+
+  updateCurrentMonthRecord() {
+    int currentMonth = DateTime.now().month;
+    List<String> tempList = [];
+    for (String element in keyList) {
+      if (element.isSameMonth(currentMonth)) {
+        tempList.add(element);
+      }
+    }
+    tempList.sort((a, b)=>b.compareTo(a));
+    currentInvalidDataList.value = tempList;
+    currentInvalidDataList.refresh();
   }
 
   @override

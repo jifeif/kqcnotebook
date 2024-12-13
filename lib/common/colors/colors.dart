@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -42,4 +44,7 @@ class AppColors {
 
   /// 主文本灰色
   static final Color divideLineColor = textColor.withOpacity(0.05);
+
+  static Color randomColor() => Color.fromARGB(255, Random.secure().nextInt(255), Random.secure().nextInt(255), Random.secure().nextInt(255));
+
 }

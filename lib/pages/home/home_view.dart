@@ -28,8 +28,8 @@ class HomePage extends StatelessWidget {
                   child: controller.isExistData.value
                       ? SingleChildScrollView(
                           child: Column(
-                            children: controller.keyList.length > 0
-                                ? controller.keyList
+                            children: controller.currentInvalidDataList.length > 0
+                                ? controller.currentInvalidDataList
                                     .map((e) => HomeRecordCell(recordList: controller.recordMap[e]))
                                     .toList()
                                 : [

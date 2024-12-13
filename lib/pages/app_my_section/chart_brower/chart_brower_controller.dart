@@ -9,10 +9,15 @@ class ChartBrowerController extends GetxController {
   final keyList = [].obs;
   final recordMap = Map<String, List<SingleCoastRecord>>().obs;
   final showTitle = "当月图表".obs;
+
+  var monthTotalCoast = 0.0;
+  var monthCostMap = Map<String, double>();
+  final monthTypeList = [].obs;
   @override
   void onInit() async {
     super.onInit();
     await acquireListData();
+    acquireMonthKindData(12, 2024);
   }
 
   @override
@@ -42,8 +47,19 @@ class ChartBrowerController extends GetxController {
           }
         }
     }
+    double totalP = 0.0;
+    for (String element in kindArr) {
+      totalP += costMap[element]!;
+    }
+
+    monthTotalCoast = totalP;
+    monthCostMap = costMap;
+    monthTypeList.value = kindArr;
+    monthTypeList.refresh();
+
     print(kindArr);
     print(costMap);
+    print(totalP);
   }
 
   // 分月的全部数据列表

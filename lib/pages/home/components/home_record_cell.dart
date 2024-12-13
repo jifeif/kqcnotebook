@@ -27,7 +27,7 @@ class HomeRecordCell extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(vertical: 6),
             child: Text(
-              recordList == null ? "2024-10-23" : recordList!.first.date,
+              recordList == null || recordList?.length == 0 ? "2024-10-23" : recordList!.first.date,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
